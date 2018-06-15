@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
+    Copyright 2017 Creu Blanca
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+-->
+
+<odoo>
+
+    <record model="ir.ui.view" id="workflow_activity_definition_form">
+        <field name="name">workflow.activity.definition.form</field>
+        <field name="model">workflow.activity.definition</field>
+        <field name="inherit_id"
+               ref="workflow_base.workflow_activity_definition_form"/>
+        <field name="arch" type="xml">
+            <notebook position="attributes">
+                <attribute name="invisible">0</attribute>
+            </notebook>
+            <notebook position="inside">
+                <page string="Mail activity" name="mail_activity" attrs="{'invisible': [('model_id', '!=', %(mail.model_mail_activity)s)]}">
+                    <group>
+                        <field name="model" invisible="1"/>
+                        <field name="workflow_activity_type_id" attrs="{'required': ['model_id', '!=', %(mail.model_mail_activity)s]}"/>
+                        <field name="activity_note"/>
+                        <field name="activity_delay"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</odoo>
